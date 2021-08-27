@@ -11,10 +11,15 @@ namespace Maze
     {
         static void Main(string[] args)
         {
+
             //Medir el tiempo que tarda en encontrar el path
             Stopwatch s = new Stopwatch();
             s.Start();
-            SearchPath.ShowPath();
+            SearchPath.CreateMaze();
+            //SearchPath.CreatePath(); //aca hay problemas
+            SearchPath.BFS();
+
+            SearchPath.Print();
             s.Stop();
             Console.WriteLine("Breadth-first search took " + s.ElapsedMilliseconds + " ms");
             //Aca termina medicion tiempo
