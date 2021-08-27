@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\isago\\Desktop\\UPB\\5\\Scripting\\Parcial\\Maze\\Maze.csproj": {}
+    "C:\\Users\\isago\\Desktop\\UPB\\5\\Scripting\\Parcial\\Parte 2 parcial\\Maze-Estructura-de-Datos\\Maze\\Maze.csproj": {}
   },
   "projects": {
-    "C:\\Users\\isago\\Desktop\\UPB\\5\\Scripting\\Parcial\\Maze\\Maze.csproj": {
+    "C:\\Users\\isago\\Desktop\\UPB\\5\\Scripting\\Parcial\\Parte 2 parcial\\Maze-Estructura-de-Datos\\Maze\\Maze.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\isago\\Desktop\\UPB\\5\\Scripting\\Parcial\\Maze\\Maze.csproj",
+        "projectUniqueName": "C:\\Users\\isago\\Desktop\\UPB\\5\\Scripting\\Parcial\\Parte 2 parcial\\Maze-Estructura-de-Datos\\Maze\\Maze.csproj",
         "projectName": "Maze",
-        "projectPath": "C:\\Users\\isago\\Desktop\\UPB\\5\\Scripting\\Parcial\\Maze\\Maze.csproj",
+        "projectPath": "C:\\Users\\isago\\Desktop\\UPB\\5\\Scripting\\Parcial\\Parte 2 parcial\\Maze-Estructura-de-Datos\\Maze\\Maze.csproj",
         "packagesPath": "C:\\Users\\isago\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\isago\\Desktop\\UPB\\5\\Scripting\\Parcial\\Maze\\obj\\",
+        "outputPath": "C:\\Users\\isago\\Desktop\\UPB\\5\\Scripting\\Parcial\\Parte 2 parcial\\Maze-Estructura-de-Datos\\Maze\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\isago\\AppData\\Roaming\\NuGet\\NuGet.Config",
