@@ -22,8 +22,8 @@ namespace Maze
             SearchPath.Print();
             s.Stop();
             Console.WriteLine("Breadth-first search took " + s.ElapsedMilliseconds + " ms");
+            Console.WriteLine();
             //Aca termina medicion tiempo
-            SearchPath.CreateMaze();
 
             Console.WriteLine();
 

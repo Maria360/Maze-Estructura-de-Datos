@@ -7,7 +7,7 @@ namespace Maze
     class Node 
     {
         public bool isExplored = false;
-        public Node isExploredFrom = null;//aca esta el error
+        public Node isExploredFrom;
 
         public int X { get; set; }
         public int Y { get; set; }
@@ -31,8 +31,8 @@ namespace Maze
     }
     class SearchPath
     {
-        private static Node startingPoint= new Node(0,0);
-        private static Node endingPoint= new Node(2,0);
+        private static Node startingPoint = new Node(0,0);
+        private static Node endingPoint = new Node(2,-2);
         private static Node searchingPoint;                           
         private static bool isExploring = true;                       // If we are end then it is set to false
 
@@ -41,22 +41,21 @@ namespace Maze
         private static Dictionary<Vector, Node> block = new Dictionary<Vector, Node>();
         private static Queue<Node> queue = new Queue<Node>();
 
-        static List<Node> nodes = new List<Node>();
-
         static int[,] maze = { { 0, 0, 0 }, { 0, 1, 0 }, { 0, 0, 0 } };
         static int[][] directions = new int[4][];
 
-    public static void CreateMaze()
+        public static void CreateMaze()
         {
-            block.Add(new Vector(0,0), new Node(0, 0));
-            block.Add(new Vector(1,0), new Node(1, 0));
-            block.Add(new Vector(2,0), new Node(2, 0));
+            block.Add(new Vector(0,0), startingPoint);
+            //block.Add(new Vector(1,0), new Node(1, 0)); 
+            block.Add(new Vector(2,0), new Node(2,0));
             block.Add(new Vector(0,-1), new Node(0, -1));
-            //block.Add(new int[1,1], new Node(1, -1)); //El hueco no se pone o si?????
+            //block.Add(new Vector(1, -1), new Node(1, -1));
             block.Add(new Vector(2,-1), new Node(2, -1));
-            block.Add(new Vector(1,2), new Node(0, -2));
+            block.Add(new Vector(0,-2), new Node(0, -2));
             block.Add(new Vector(1,-2), new Node(1, -2));
-            block.Add(new Vector(2,-2), new Node(2, -2));
+            block.Add(new Vector(2,-2), endingPoint);
+
         }
 
         public static void BFS()
@@ -66,19 +65,18 @@ namespace Maze
             {
                 searchingPoint = queue.Dequeue();
                 OnReachingEnd();
-                ExploreNeighbourNodes();  //Ayuda diosito xfa
+                ExploreNeighbourNodes();  
                 
             }
         }
         static void ExploreNeighbourNodes()
         {
+            if (!isExploring) { return; }
+
             directions[0] = new int[] { 0, -1 };
             directions[1] = new int[] { 0, 1 };
             directions[2] = new int[] { 1, 0 };
             directions[3] = new int[] { -1, 0 };
-
-
-            if (!isExploring) { return; }
 
             for (int i = 0; i < 4; i++)
             {
@@ -131,23 +129,32 @@ namespace Maze
             path.Add(node);
         }
 
-        
 
         public static void Print()
         {
             Console.WriteLine("Starting Point-> "+startingPoint.X+","+startingPoint.Y);
             Console.WriteLine("Final Point-> " + endingPoint.X + "," + endingPoint.Y);
+            //Console.WriteLine("Final Point node-> " + endingPoint.isExploredFrom);
 
+            Console.WriteLine();
+            Console.WriteLine("MAZE");
             for (int i =0; i<3; i++)
             {
                 for(int j=0; j<3; j++)
                 {
-                    Console.Write("["+maze[i, j]+"]");
+                    Console.Write("["+ maze[i, j]+"]");
                 }
                 Console.WriteLine();
             }
+            Console.WriteLine();
 
-            //Console.WriteLine("Path-> " + path);
+            Console.WriteLine("Solution Path");
+            foreach(var i in path)
+            {
+                Console.WriteLine(i.X +"," + i.Y);
+
+            }
+            Console.WriteLine();
 
         }
 
