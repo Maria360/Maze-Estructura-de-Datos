@@ -34,9 +34,10 @@ namespace Maze
         static List<Node> nodes = new List<Node>();
 
         static int[,] maze = { { 0, 0, 0 }, { 0, 1, 0 }, { 0, 0, 0 } };
+        //static int[,] directions = { { 0,-1 }, { 0, 1 }, { -1, 0 },{ 1, 0 } };
+        static int[][] directions = new int[4][];
 
-
-        public static void CreateMaze()
+    public static void CreateMaze()
         {
             block.Add(new int[0,0], new Node(0, 0));
             block.Add(new int[1,0], new Node(1, 0));
@@ -62,12 +63,20 @@ namespace Maze
         }
         static void ExploreNeighbourNodes()
         {
+            directions[0] = new int[] { 0, -1 };
+            directions[1] = new int[] { 0, 1 };
+            directions[2] = new int[] { 1, 0 };
+            directions[3] = new int[] { -1, 0 };
+
+
             if (!isExploring) { return; }
-            foreach(var i in block.Keys)
+
+            for (int i = 0; i < 4; i++)
             {
-                int neighbourPosX = searchingPoint.X;
-                int neighbourPosY = searchingPoint.Y;
+                int neighbourPosX = searchingPoint.X + directions[i][0];
+                int neighbourPosY = searchingPoint.Y + directions[i][1];
                 int[,] neighbourPos = new int[neighbourPosX, neighbourPosY];
+
                 if (block.ContainsKey(neighbourPos))
                 {
                     Node node = block[neighbourPos];
@@ -78,9 +87,8 @@ namespace Maze
                         node.isExploredFrom = searchingPoint;      // Set how we reached the neighbouring node i.e the previous node; for getting the path
                     }
                 }
-                
-            }
 
+            }
         }
         private static void OnReachingEnd()
         {

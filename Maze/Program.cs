@@ -16,7 +16,7 @@ namespace Maze
             Stopwatch s = new Stopwatch();
             s.Start();
             SearchPath.CreateMaze();
-            //SearchPath.CreatePath(); //aca hay problemas
+            SearchPath.CreatePath(); //aca hay problemas
             SearchPath.BFS();
 
             SearchPath.Print();
