@@ -7,7 +7,7 @@ namespace Maze
     class Node 
     {
         public bool isExplored = false;
-        public Node isExploredFrom;//aca esta el error
+        public Node isExploredFrom = null;//aca esta el error
 
         public int X { get; set; }
         public int Y { get; set; }
@@ -18,7 +18,17 @@ namespace Maze
             Y = y;
         }
     }
+    struct Vector
+    {
+        public int X { get; set; }
+        public int Y { get; set; }
 
+        public Vector(int x, int y)
+        {
+            X = x;
+            Y = y;
+        }
+    }
     class SearchPath
     {
         private static Node startingPoint= new Node(0,0);
@@ -28,26 +38,25 @@ namespace Maze
 
         private static List<Node> path = new List<Node>();            // For storing the path traversed
 
-        private static Dictionary<int[,], Node> block = new Dictionary<int[,], Node>();
+        private static Dictionary<Vector, Node> block = new Dictionary<Vector, Node>();
         private static Queue<Node> queue = new Queue<Node>();
 
         static List<Node> nodes = new List<Node>();
 
         static int[,] maze = { { 0, 0, 0 }, { 0, 1, 0 }, { 0, 0, 0 } };
-        //static int[,] directions = { { 0,-1 }, { 0, 1 }, { -1, 0 },{ 1, 0 } };
         static int[][] directions = new int[4][];
 
     public static void CreateMaze()
         {
-            block.Add(new int[0,0], new Node(0, 0));
-            block.Add(new int[1,0], new Node(1, 0));
-            block.Add(new int[2,0], new Node(2, 0));
-            block.Add(new int[0,1], new Node(0, -1));
+            block.Add(new Vector(0,0), new Node(0, 0));
+            block.Add(new Vector(1,0), new Node(1, 0));
+            block.Add(new Vector(2,0), new Node(2, 0));
+            block.Add(new Vector(0,-1), new Node(0, -1));
             //block.Add(new int[1,1], new Node(1, -1)); //El hueco no se pone o si?????
-            block.Add(new int[2,1], new Node(2, -1));
-            block.Add(new int[0,2], new Node(0, -2));
-            block.Add(new int[1,2], new Node(1, -2));
-            block.Add(new int[2,2], new Node(2, -2));
+            block.Add(new Vector(2,-1), new Node(2, -1));
+            block.Add(new Vector(1,2), new Node(0, -2));
+            block.Add(new Vector(1,-2), new Node(1, -2));
+            block.Add(new Vector(2,-2), new Node(2, -2));
         }
 
         public static void BFS()
@@ -75,7 +84,7 @@ namespace Maze
             {
                 int neighbourPosX = searchingPoint.X + directions[i][0];
                 int neighbourPosY = searchingPoint.Y + directions[i][1];
-                int[,] neighbourPos = new int[neighbourPosX, neighbourPosY];
+                Vector neighbourPos = new Vector(neighbourPosX, neighbourPosY);
 
                 if (block.ContainsKey(neighbourPos))
                 {
